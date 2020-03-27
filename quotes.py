@@ -20,3 +20,5 @@ df = pandas_datareader.DataReader(ticker, 'yahoo', startDate, endDate)
 
 # Print dataframe
 print(df)
+
+# He abierto una nueva rama para que vayamos avanzando con el código
