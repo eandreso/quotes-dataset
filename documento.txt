@@ -1,39 +1,50 @@
 1. Contexto. Explicar en qué contexto se ha recolectado la información. Explique
 por qué el sitio web elegido proporciona dicha información.
 
-Recolección de las cotizaciones de apertura, máximo,mínimo, cierre y cierre ajustado de una empresa, para el periodo dado utilizando la librería pandas_datareader
-El sitio web elegido es yahoo por su confiabilidad y por facilitar el campo cierre ajustado.
+Este dataset es una contiene información sobre las cotizaciones en bolsa de: apertura, máximo, mínimo, cierre y cierre ajustado (todas en Euros) de la empresa Telefónica, desde el 2015-03-30 hasta la fecha actual 2020-03-28, utilizando la librería pandas_datareader, argparse y datetime.
 
+El sitio web elegido es yahoo por su confiabilidad y por facilitar el campo cierre ajustado, calculado a través de la fórmula: [FORMULA DE CIERRE AJUSTADO].
 
 2. Definir un título para el dataset. Elegir un título que sea descriptivo.
 
-COTIZACIONES DE LA EMPRESA xxx PARA EL PERIODO xxxx – YYYY
+COTIZACIONES DE LA EMPRESA TELEFÓNICA PARA EL PERIODO DE 2015-03-30 HASTA 2020-03-28
+EVOLUCIÓN DE LAS COTIZACIONES DE TELEFÓNICA DURANTE LOS ÚLTIMOS 5 AÑOS
 
-3. Descripción del dataset. Desarrollar una descripción breve del conjunto de
-datos que se ha extraído (es necesario que esta descripción tenga sentido con
-el título elegido).
+3. Descripción del dataset. Desarrollar una descripción breve del conjunto de datos que se ha extraído (es necesario que esta descripción tenga sentido con el título elegido).
 
-Cotizaciones de apertura, máximo,mínimo, cierre y cierre ajustado de una empresa, para el periodo dado
+El dataset contiene datos de cotizaciones de la empresa Telefónica desde el 30 de marzo de 2015 hasta el 28 de marzo de 2020 (fecha actual del proyecto). El periodo abarca un periodo temporal de aproximadamente 5 años. Hay que tener en cuenta sin embargo, que el número de registros (días) del dataset no se corresponde con 1.825 (el correspondiente a aproximadamente 5 años), dado que la bolsa no está activa durante los fines de semana y algunos festivos.
 
-4. Representación gráfica. Presentar una imagen o esquema que identifique el
-dataset visualmente
+4. Representación gráfica. Presentar una imagen o esquema que identifique el dataset visualmente
 
-5. Contenido. Explicar los campos que incluye el dataset, el periodo de tiempo de
-los datos y cómo se ha recogido.
 
-Date                High     Low    Open   Close    Volume  Adj Close
-SE HAN RECOGIDO utilizando la librería pandas_datareader
+
+5. Contenido. Explicar los campos que incluye el dataset, el periodo de tiempo de los datos y cómo se ha recogido.
+
+El dataset está compuesto por 1280 registros (filas) con los siguientes campos (columnas): 
+
+- Date:	La fecha en la que fueron recogidos los demás datos.
+- High:	La cotización máxima que alcanzaron las acciones de Telefónica en la fecha indicada.
+- Low:	La cotización mínima que alcanzaron las acciones de Telefónica en la fecha indicada.
+- Open:	La cotización inicial de las acciones de Telefónica en la fecha indicada.
+- Close:La cotización final de las acciones de Telefónica en la fecha indicada.
+- Volume: El volumen de operaciones que se llevaron a cabo con las acciones de Telefónica en la fecha indicada.
+- Adj Close: La cotización final de las acciones de Telefónica en la fecha indicada, ajustadas con la fórmula [FORMULA DE CIERRE AJUSTADO].
+
+El periodo recogido incluye aproximadamente los 5 años anteriores a la fecha actual: desde el 30 de marzo de 2015 hasta el 28 de marzo de 2020.
+
+Durante el trabajo de extracción se ha otpado por el uso de la librería pandas_datareader dado que ofrece claras ventajas como: sencillez del código y por tanto, mejor legibilidad, además de una extracción más precisa a través del uso de parámetros concretos de símbolo (empresa en bolsa) y fechas específicas, así como parámetros por defecto.
+
+También se ha hecho uso de la librería argparse, con el fin de posibilitar la interacción con personas para que estas puedan extraer los datos requeridos en cada momento.
+
+Finalmente se ha incorporado además la librería datetime para el manejo de las fechas de manera adecuada.
     
-6. Agradecimientos. Presentar al propietario del conjunto de datos. Es necesario
-incluir citas de investigación o análisis anteriores (si los hay).
+6. Agradecimientos. Presentar al propietario del conjunto de datos. Es necesario incluir citas de investigación o análisis anteriores (si los hay).
 
-7. Inspiración. Explique por qué es interesante este conjunto de datos y qué
-preguntas se pretenden responder.
+7. Inspiración. Explique por qué es interesante este conjunto de datos y qué preguntas se pretenden responder.
 
-El conjunto de datos es interesante para observar la evolución de las cotizaciones de la empresa
+Dada la situación actual en la que se ve sumergida el mundo entero por el COVID-19, se ha dispuesto el siguiente dataset para evaluar el impacto económico que ha tenido en la empresa Telefónica. Esto se ha llevado a cabo seleccionando el periodo de los 5 años anteriores.
 
-8. Licencia. Seleccione una de estas licencias para su dataset y explique el
-motivo de su selección:
+8. Licencia. Seleccione una de estas licencias para su dataset y explique el motivo de su selección:
 ○ Released Under CC0: Public Domain License
 ○ Released Under CC BY-NC-SA 4.0 License
 ○ Released Under CC BY-SA 4.0 License
@@ -42,10 +53,31 @@ under Database Contents License
 ○ Other (specified above)
 ○ Unknown License
 
+9. Código. Adjuntar el código con el que se ha generado el dataset, preferiblemente en Python o, alternativamente, en R.
 
+# Import libraries
+import pandas_datareader
+import datetime
+import argparse
 
-9. Código. Adjuntar el código con el que se ha generado el dataset,
-preferiblemente en Python o, alternativamente, en R.
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument("--ticker", help="Enter corporation ticker symbol", default = 'TEF.MC')
+parser.add_argument("--startDate", help="Enter start date of interval YY-MM-DD", default =  str(datetime.date.today()-datetime.timedelta(days = (365*5))))
+parser.add_argument("--endDate", help="Enter end date of interval YY-MM-DD", default = str(datetime.date.today()))
+args = parser.parse_args()
 
-10. Dataset. Publicación del dataset en formato CSV en Zenodo con una pequeña
-descripción.
+# Variables
+ticker = args.ticker
+startDate = datetime.datetime.strptime(str(args.startDate), "%Y-%m-%d")
+endDate = datetime.datetime.strptime(str(args.endDate),"%Y-%m-%d")
+
+# Read data from yahoo
+df = pandas_datareader.DataReader(ticker, 'yahoo', startDate, endDate)
+
+# Print dataframe
+print(df)
+print(startDate)
+df.to_csv(ticker + '.csv')
+
+10. Dataset. Publicación del dataset en formato CSV en Zenodo con una pequeña descripción.
