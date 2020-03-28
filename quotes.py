@@ -18,8 +18,24 @@ endDate = datetime.datetime.strptime(str(args.endDate),"%Y-%m-%d")
 # Read data from yahoo
 df = pandas_datareader.DataReader(ticker, 'yahoo', startDate, endDate)
 
+# Get Date into a column value
+df.reset_index(inplace=True,drop=False)
+
 # Print dataframe head
 print(df.head)
 
 # Export dataframe to csv
 df.to_csv(ticker + '.csv')
+
+# This code is adapted from https://plot.ly/python/ohlc-charts/
+# OHLC Chart without Rangeslider
+fig = go.Figure(data=go.Ohlc(x=df['Date'],
+                open=df['Open'],
+                high=df['High'],
+                low=df['Low'],
+                close=df['Close']))
+fig.update(layout_xaxis_rangeslider_visible=False)
+fig.show()
+
+# Save fig html
+fig.write_html("file.html")
