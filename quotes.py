@@ -18,6 +18,8 @@ endDate = datetime.datetime.strptime(str(args.endDate),"%Y-%m-%d")
 # Read data from yahoo
 df = pandas_datareader.DataReader(ticker, 'yahoo', startDate, endDate)
 
-# Print dataframe
-print(head(df))
+# Print dataframe head
+print(df.head)
+
+# Export dataframe to csv
 df.to_csv(ticker + '.csv')
