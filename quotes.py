@@ -35,7 +35,14 @@ fig = go.Figure(data=go.Ohlc(x=df['Date'],
                 low=df['Low'],
                 close=df['Close']))
 fig.update(layout_xaxis_rangeslider_visible=False)
+
+# Adding customized text
+fig.update_layout(
+    title=ticker,
+    yaxis_title='Cotización')
+
+# Show OHLC Chart
 fig.show()
 
-# Save fig html
+# Save OHLC Chart html
 fig.write_html("file.html")
