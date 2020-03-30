@@ -2,6 +2,8 @@
 import pandas_datareader
 import datetime
 import argparse
+import pandas as pd
+import plotly.graph_objects as go
 
 # Parse command line arguments
 parser = argparse.ArgumentParser()
