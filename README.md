@@ -38,6 +38,6 @@ csv/tef.mc.csv: contiene dataset con las cotizaciones de Telefónica de los últ
 
 ### Otros ficheros
 
-pdf/p1.pdf: contiene el documento de respuestas
+pdf/Práctica 1.pdf: contiene el documento de respuestas
 
 png/TEF.MC.PNG: contiene la imagen que describe el dataset
