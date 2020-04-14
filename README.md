@@ -12,7 +12,7 @@ La finalidad del proyecto es educativa y de investigación, no comercial.
 
 ## Miembros del equipo
 Enrique Javier Andrés Orera
-Rubén Silva mARÍN
+Rubén Silva Marín
 
 
 ## Descripción de los ficheros
@@ -20,3 +20,14 @@ Rubén Silva mARÍN
 ### Ficheros del código fuente
 
 src/scrapper.py: contiene el código fuente necesario para crear el dataset con los datos extraídos mediante webscraping y su exportación a formato csv.
+
+### Fichero CSV
+
+csv/tef.mc.csv: contiene las cotizaciones de telefónica de los últimos cinco años (OHLC) en formato csv
+
+### Ficheros accesorios
+
+pdf/p1.pdf: contiene el documento de respuestas
+
+
+
