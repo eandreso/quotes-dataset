@@ -5,7 +5,7 @@
 
 
 ## Descripción
-Desarrollo de la práctica 1 de la asignatura Tipología y ciclo de vida de los datos del Máster Universitario en Ciencia de Datos de la Universidad Oberta de Catalunya.
+Desarrollo de la práctica 1 de la asignatura Tipología y ciclo de vida de los datos del Máster Universitario en Ciencia de Datos de la Universitat Oberta de Catalunya.
 
 Creación de un dataset en formato csv con las cotizaciones de Telefónica de los últimos cinco años con fines educativos.
 
@@ -34,13 +34,10 @@ src/scrapper.py: contiene el código fuente necesario para crear el dataset con 
 
 ### Fichero CSV
 
-csv/tef.mc.csv: contiene las cotizaciones de telefónica de los últimos cinco años (OHLC) en formato csv
+csv/tef.mc.csv: contiene dataset con las cotizaciones de Telefónica de los últimos cinco años (OHLC) en formato csv
 
-### Ficheros accesorios
+### Otros ficheros
 
 pdf/p1.pdf: contiene el documento de respuestas
 
 png/TEF.MC.PNG: contiene la imagen que describe el dataset
-
-
-
